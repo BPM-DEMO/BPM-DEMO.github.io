@@ -10,26 +10,35 @@ body {
   font-family: sans-serif;
   padding: 16px;
 }
+h1 {
+  margin-bottom: 8px;
+}
 button {
   padding: 10px 14px;
   font-size: 14px;
   margin: 4px;
 }
-.preview, .gallery {
+.toolbar {
+  margin-bottom: 12px;
+}
+.gallery {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
   gap: 12px;
 }
-img {
-  width: 100%;
-  border-radius: 8px;
-}
 .card {
-  position: relative;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 6px;
+}
+.card img {
+  width: 100%;
+  border-radius: 6px;
 }
 .actions {
   display: flex;
   justify-content: space-between;
+  margin-top: 6px;
 }
 input[type=file] {
   display: none;
@@ -41,11 +50,13 @@ input[type=file] {
 
 <h1>📸 写真撮影</h1>
 
-<button id="openCamera">📷 撮影する</button>
-<input type="file" id="camera" accept="image/*" capture="environment">
+<div class="toolbar">
+  <button id="openCamera">📷 撮影する</button>
+  <button id="saveAll">📦 一括保存</button>
+  <button id="deleteAll">🗑 全削除</button>
+</div>
 
-<h2>👀 最新プレビュー</h2>
-<div class="preview" id="preview"></div>
+<input type="file" id="camera" accept="image/*" capture="environment">
 
 <h2>📚 保存済み写真</h2>
 <div class="gallery" id="gallery"></div>
@@ -73,28 +84,22 @@ document.getElementById("openCamera").onclick = () => {
   document.getElementById("camera").click();
 };
 
-/* ===== 撮影後 ===== */
+/* ===== 撮影後（自動保存） ===== */
 document.getElementById("camera").addEventListener("change", e => {
   const file = e.target.files[0];
   if (!file) return;
 
   const reader = new FileReader();
   reader.onload = () => {
-    showPreview(reader.result);
     savePhoto(reader.result);
   };
   reader.readAsDataURL(file);
 
+  // 連続撮影対応
   e.target.value = "";
 });
 
-/* ===== プレビュー ===== */
-function showPreview(data) {
-  document.getElementById("preview").innerHTML =
-    `<img src="${data}">`;
-}
-
-/* ===== 保存 ===== */
+/* ===== DBに保存 ===== */
 function savePhoto(data) {
   const tx = db.transaction("photos", "readwrite");
   tx.objectStore("photos").add({
@@ -140,22 +145,65 @@ function loadPhotos() {
   };
 }
 
-/* ===== 端末に保存 ===== */
-function saveToDevice(base64) {
+/* ===== 端末に保存（iOS対応） ===== */
+function saveToDevice(base64, filename) {
+  const byteString = atob(base64.split(",")[1]);
+  const mime = base64.split(",")[0].match(/:(.*?);/)[1];
+  const ab = new ArrayBuffer(byteString.length);
+  const ia = new Uint8Array(ab);
+
+  for (let i = 0; i < byteString.length; i++) {
+    ia[i] = byteString.charCodeAt(i);
+  }
+
+  const blob = new Blob([ab], { type: mime });
+  const url = URL.createObjectURL(blob);
+
   const a = document.createElement("a");
-  a.href = base64;
-  a.download = "photo_" + Date.now() + ".jpg";
+  a.href = url;
+  a.download = filename || ("photo_" + Date.now() + ".jpg");
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
+
+  URL.revokeObjectURL(url);
 }
 
-/* ===== 削除 ===== */
+/* ===== 一括保存 ===== */
+document.getElementById("saveAll").onclick = () => {
+  const tx = db.transaction("photos", "readonly");
+  const store = tx.objectStore("photos");
+
+  store.getAll().onsuccess = e => {
+    const list = e.target.result;
+    if (!list.length) {
+      alert("保存する写真がありません");
+      return;
+    }
+
+    list.forEach((item, index) => {
+      setTimeout(() => {
+        saveToDevice(item.image, `photo_${index + 1}.jpg`);
+      }, index * 400); // iOS対策：少しずつ保存
+    });
+  };
+};
+
+/* ===== 個別削除 ===== */
 function deletePhoto(id) {
   const tx = db.transaction("photos", "readwrite");
   tx.objectStore("photos").delete(id);
   tx.oncomplete = loadPhotos;
 }
+
+/* ===== 全削除 ===== */
+document.getElementById("deleteAll").onclick = () => {
+  if (!confirm("すべての写真を削除しますか？")) return;
+
+  const tx = db.transaction("photos", "readwrite");
+  tx.objectStore("photos").clear();
+  tx.oncomplete = loadPhotos;
+};
 </script>
 
 </body>
