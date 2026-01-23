@@ -6,35 +6,22 @@
 <title>Camera Capture PWA</title>
 
 <style>
-body {
-  font-family: sans-serif;
-  padding: 16px;
-}
-button {
-  padding: 12px 18px;
-  font-size: 16px;
-}
+body { font-family: sans-serif; padding: 16px; }
+button { padding: 12px 18px; font-size: 16px; }
 .preview, .gallery {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
   gap: 12px;
 }
-img {
-  width: 100%;
-  border-radius: 8px;
-}
-.card {
-  position: relative;
-}
+img { width: 100%; border-radius: 8px; }
+.card { position: relative; }
 .card button {
   position: absolute;
   top: 4px;
   right: 4px;
   font-size: 12px;
 }
-input[type=file] {
-  display: none;
-}
+input[type=file] { display: none; }
 </style>
 </head>
 
@@ -52,19 +39,16 @@ input[type=file] {
 <div class="gallery" id="gallery"></div>
 
 <script>
-/* ===== カメラ起動 ===== */
-const cameraInput = document.getElementById("camera");
-document.getElementById("openCamera").onclick = () => {
-  cameraInput.click(); // ← これが重要
-};
-
-/* ===== IndexedDB ===== */
 let db;
+
+/* ===== DB初期化 ===== */
 const req = indexedDB.open("photoDB", 1);
 
 req.onupgradeneeded = e => {
   db = e.target.result;
-  db.createObjectStore("photos", { keyPath: "id", autoIncrement: true });
+  if (!db.objectStoreNames.contains("photos")) {
+    db.createObjectStore("photos", { keyPath: "id", autoIncrement: true });
+  }
 };
 
 req.onsuccess = e => {
@@ -72,8 +56,13 @@ req.onsuccess = e => {
   loadPhotos();
 };
 
+/* ===== カメラ起動 ===== */
+document.getElementById("openCamera").onclick = () => {
+  document.getElementById("camera").click();
+};
+
 /* ===== 撮影後 ===== */
-cameraInput.addEventListener("change", e => {
+document.getElementById("camera").addEventListener("change", e => {
   const file = e.target.files[0];
   if (!file) return;
 
@@ -84,24 +73,25 @@ cameraInput.addEventListener("change", e => {
   };
   reader.readAsDataURL(file);
 
-  // 連続撮影できるようにリセット
-  cameraInput.value = "";
+  e.target.value = "";
 });
 
 /* ===== プレビュー ===== */
 function showPreview(data) {
-  document.getElementById("preview").innerHTML =
-    `<img src="${data}">`;
+  document.getElementById("preview").innerHTML = `<img src="${data}">`;
 }
 
 /* ===== 保存 ===== */
 function savePhoto(data) {
   const tx = db.transaction("photos", "readwrite");
-  tx.objectStore("photos").add({ image: data, time: Date.now() });
-  tx.oncomplete = loadPhotos;
+  tx.objectStore("photos").add({
+    image: data,
+    time: Date.now()
+  });
+  tx.oncomplete = () => loadPhotos();
 }
 
-/* ===== 一覧 ===== */
+/* ===== 一覧表示 ===== */
 function loadPhotos() {
   const gallery = document.getElementById("gallery");
   gallery.innerHTML = "";
@@ -109,32 +99,38 @@ function loadPhotos() {
   const tx = db.transaction("photos", "readonly");
   const store = tx.objectStore("photos");
 
-  store.openCursor(null, "prev").onsuccess = e => {
-    const cur = e.target.result;
-    if (!cur) return;
+  store.getAll().onsuccess = e => {
+    const list = e.target.result;
 
-    const card = document.createElement("div");
-    card.className = "card";
+    // 新しい順に表示
+    list.sort((a, b) => b.id - a.id);
 
-    const img = document.createElement("img");
-    img.src = cur.value.image;
+    list.forEach(item => {
+      const card = document.createElement("div");
+      card.className = "card";
 
-    const del = document.createElement("button");
-    del.textContent = "削除";
-    del.onclick = () => deletePhoto(cur.key);
+      const img = document.createElement("img");
+      img.src = item.image;
 
-    card.append(img, del);
-    gallery.appendChild(card);
+      const del = document.createElement("button");
+      del.textContent = "削除";
+      del.onclick = () => deletePhoto(item.id);
 
-    cur.continue();
+      card.append(img, del);
+      gallery.appendChild(card);
+    });
   };
 }
 
-/* ===== 削除 ===== */
+/* ===== 削除（確実） ===== */
 function deletePhoto(id) {
   const tx = db.transaction("photos", "readwrite");
-  tx.objectStore("photos").delete(id);
-  tx.oncomplete = loadPhotos;
+  const store = tx.objectStore("photos");
+  store.delete(id);
+
+  tx.oncomplete = () => {
+    loadPhotos(); // ← 削除完了後に再描画
+  };
 }
 </script>
 
