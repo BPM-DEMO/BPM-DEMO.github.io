@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>保存済み写真一覧</title>
+
+<style>
+body {
+  font-family: sans-serif;
+  padding: 16px;
+}
+h1 {
+  margin-bottom: 12px;
+}
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 12px;
+}
+.card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 6px;
+}
+.card img {
+  width: 100%;
+  border-radius: 6px;
+}
+.actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6px;
+}
+button {
+  padding: 6px 10px;
+  font-size: 13px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>📚 保存済み写真一覧</h1>
+<a href="index.html">← 撮影ページへ戻る</a>
+
+<div class="gallery" id="gallery"></div>
+
+<script>
+let db;
+
+/* ===== IndexedDB を同じ名前で開く ===== */
+const req = indexedDB.open("photoDB", 1);
+
+req.onsuccess = e => {
+  db = e.target.result;
+  loadPhotos();
+};
+
+/* ===== 一覧表示 ===== */
+function loadPhotos() {
+  const gallery = document.getElementById("gallery");
+  gallery.innerHTML = "";
+
+  const tx = db.transaction("photos", "readonly");
+  const store = tx.objectStore("photos");
+
+  store.getAll().onsuccess = e => {
+    const list = e.target.result.sort((a, b) => b.id - a.id);
+
+    list.forEach(item => {
+      const card = document.createElement("div");
+      card.className = "card";
+
+      const img = document.createElement("img");
+      img.src = item.image;
+
+      const actions = document.createElement("div");
+      actions.className = "actions";
+
+      const saveBtn = document.createElement("button");
+      saveBtn.textContent = "保存";
+      saveBtn.onclick = () => saveToDevice(item.image);
+
+      const delBtn = document.createElement("button");
+      delBtn.textContent = "削除";
+      delBtn.onclick = () => deletePhoto(item.id);
+
+      actions.append(saveBtn, delBtn);
+      card.append(img, actions);
+      gallery.appendChild(card);
+    });
+  };
+}
+
+/* ===== 端末に保存（iOS対応） ===== */
+function saveToDevice(base64) {
+  const byteString = atob(base64.split(",")[1]);
+  const mime = base64.split(",")[0].match(/:(.*?);/)[1];
+  const ab = new ArrayBuffer(byteString.length);
+  const ia = new Uint8Array(ab);
+
+  for (let i = 0; i < byteString.length; i++) {
+    ia[i] = byteString.charCodeAt(i);
+  }
+
+  const blob = new Blob([ab], { type: mime });
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "photo_" + Date.now() + ".jpg";
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+
+  URL.revokeObjectURL(url);
+}
+
+/* ===== 削除 ===== */
+function deletePhoto(id) {
+  const tx = db.transaction("photos", "readwrite");
+  tx.objectStore("photos").delete(id);
+  tx.oncomplete = loadPhotos;
+}
+</script>
+
+</body>
+</html>
