@@ -16,29 +16,57 @@
 	<dd>
 		<div>
 		<label><span>背面カメラ</span>
-		<input type="file" capture="environment" accept="image/*"></label>
+		<input type="file" capture="environment" accept="image/*" class="photo-capture">
+		</label>
 		</div>
 
 		<div>
 		<label><span>インカメラ</span>
-		<input type="file" capture="user" accept="image/*"></label>
+		<input type="file" capture="user" accept="image/*" class="photo-capture">
+		</label>
 		</div>
 	</dd>
+
 	<dt>動画</dt>
 	<dd>
 		<div>
 		<label><span>背面カメラ</span>
-		<input type="file" capture="environment" accept="video/*"></label>
+		<input type="file" capture="environment" accept="video/*">
+		</label>
 		</div>
 
 		<div>
 		<label><span>インカメラ</span>
-		<input type="file" capture="user" accept="video/*"></label>
+		<input type="file" capture="user" accept="video/*">
+		</label>
 		</div>
 	</dd>
 </dl>
 
-<small>&copy; 2010 <a href="https://sgn-test.github.io/">BLACKFLAG</a></small>
+<small>Home <a href="https://sgn-test.github.io/">Back</a></small>
+
+<script>
+document.querySelectorAll('.photo-capture').forEach(input => {
+	input.addEventListener('change', function(e) {
+		const file = e.target.files[0];
+		if (!file) return;
+
+		const url = URL.createObjectURL(file);
+
+		const a = document.createElement('a');
+		a.href = url;
+		a.download = 'photo_' + Date.now() + '.jpg';
+		document.body.appendChild(a);
+		a.click();
+
+		document.body.removeChild(a);
+		URL.revokeObjectURL(url);
+
+		// 同じファイルを再度選べるようにリセット
+		e.target.value = '';
+	});
+});
+</script>
 
 </body>
 </html>
