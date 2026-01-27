@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<!-- saved from url=(0034)http://localhost:59652/Sagyokoutei -->
+<html lang="en" class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage no-websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths" style=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>
+	Home Page - マイ ASP.NET アプリケーション
+</title><script src="./BPM_Sagyokoutei_files/modernizr-2.8.3.js.ダウンロード"></script>
+<link href="./BPM_Sagyokoutei_files/bootstrap.css" rel="stylesheet">
+<link href="./BPM_Sagyokoutei_files/Site.css" rel="stylesheet">
+<link href="http://localhost:59652/favicon.ico" rel="shortcut icon" type="image/x-icon"></head>
+<body>
+    <form method="post" action="http://localhost:59652/Sagyokoutei" id="ctl01">
+<div class="aspNetHidden">
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="">
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="YYhM2JZL+lkAysbp2WkJj+MiC3JwMghbeE0e5fEVzQQYR5AafwIsaguQdrAaAUo/ClHxumOIAy/iBIR63egMgsOAakxR+dU7U5wO74hQr6n+R3BQLxoyxQ3ZCPC903f/GWVJtIrOXHiLMSHuwE47kbICe2AMFjnPgJPjLzjEmwlCubXoWYORZp9L7ggsJxMLYAjrxilOF+OgOKK4DgA/AA==">
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['ctl01'];
+if (!theForm) {
+    theForm = document.ctl01;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+
+<script src="./BPM_Sagyokoutei_files/MsAjaxJs" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+if (typeof(Sys) === 'undefined') throw new Error('ASP.NET Ajax クライアント側フレームワークを読み込めませんでした。');
+//]]>
+</script>
+
+<script src="./BPM_Sagyokoutei_files/jquery-3.3.1.js.ダウンロード" type="text/javascript"></script>
+<script src="./BPM_Sagyokoutei_files/bootstrap.js.ダウンロード" type="text/javascript"></script>
+<script src="./BPM_Sagyokoutei_files/WebFormsJs" type="text/javascript"></script>
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="588DE5B6">
+</div>
+        <script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('ctl00$ctl09', 'ctl01', [], [], [], 90, 'ctl00');
+//]]>
+</script>
+
+
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="https://sgn-test.github.io/" class="navbar-brand">BP Management System for mobile</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="https://sgn-test.github.io/">ホーム</a></li>
+                        <!--<li><a href="About">詳細</a></li>-->
+                        <!--<li><a href="Contact">問い合わせ</a></li>-->
+                    </ul>
+                    
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="https://sgn-test.github.io/">登録</a></li>
+                                <li><a href="https://sgn-test.github.io/">ログイン</a></li>
+                            </ul>
+                        
+                </div>
+            </div>
+        </div>
+        <div class="container body-content">
+            
+
+    <div class="jumbotron">
+        <h2>BPM for mobile</h2>
+
+        <div class="col-xs-6">
+            <p class="lead text-right">担当者：</p>
+        </div>
+        <div class="col-xs-6">
+            <p class="lead">板金担当A</p>
+        </div>
+
+    </div>
+
+    <style>
+        /* 全体調整 */
+        .main-container { padding: 10px; background-color: #f9f9f9; }
+        
+        /* ヘッダー部分 */
+        .header-info { margin-bottom: 20px; }
+        
+        /* チェックボックスの大型化 */
+        .large-check { 
+            width: 30px; height: 30px; 
+            cursor: pointer; 
+            vertical-align: middle;
+            margin: 0 auto;
+        }
+
+        /* 作業部位の行 */
+        .work-row {
+            background-color: #fff;
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+
+        /* カメラボタンのカスタマイズ */
+        .camera-btn-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+        .camera-btn-label {
+            display: inline-block;
+            background-color: #5bc0de;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2em;
+            margin-bottom: 0;
+        }
+        .camera-btn-label:active { background-color: #31b0d5; }
+        #cameraInput { display: none; }
+
+        /* 写真プレビュー */
+        #previewContainer {
+            margin-top: 15px;
+            text-align: center;
+            border: 2px dashed #ccc;
+            padding: 10px;
+            border-radius: 8px;
+            min-height: 100px;
+            background: #fff;
+        }
+        #myPhoto {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        /* ラベルの幅調整 */
+        .info-label { font-weight: bold; min-width: 70px; display: inline-block; }
+    </style>
+
+    <div class="row">
+        <div class="col-md-6">
+
+            <div class="well" style="padding: 10px; margin-top: 20px;">
+                <div class="row">
+                    <div class="col-xs-4">
+                        <span class="label label-info"><strong>現在日時</strong></span>
+                    </div>
+                    <div class="col-xs-8">
+
+                        <!-- ここにJavaScriptで日時が流し込まれます -->
+                        <span id="current-datetime">2026年01月27日 10:19</span>
+
+                    </div>
+                </div>
+                <hr style="margin: 10px 0;">
+                <div class="row">
+                    <div class="col-xs-4">
+                        <span class="label label-info">作業工程</span>
+                    </div>
+                    <div class="col-xs-8">
+                        取外　部品取外作業
+                    </div>
+                </div>
+                <hr style="margin: 10px 0;">
+                <div class="row">
+                    <div class="col-xs-4">
+                        <span class="label label-info">作業場所</span>
+                    </div>
+                    <div class="col-xs-8">
+                        ブースＡ
+                    </div>
+                </div>
+            </div>
+
+            <h2>&nbsp;</h2>
+            <h2>担当割当　作業工程</h2>
+
+            <div class="well" style="padding: 10px; margin-top: 20px;">
+    
+                <!-- ★見出し行（前回の薄い青を維持） -->
+                <div class="row" style="display: flex; justify-content: space-between; align-items: center; background-color: #d9edf7; color: #31708f; margin: -10px -10px 10px -10px; padding: 10px; border-bottom: 1px solid #bce8f1; border-radius: 4px 4px 0 0;">
+                    <div class="col-xs-12" style="display: flex; justify-content: space-between; align-items: center;">
+                        <strong style="font-size: 1.1em;">作業部位</strong>
+                        <div style="display: flex; gap: 40px; margin-right: 25px;">
+                            <span style="width: 50px; text-align: center; font-weight: bold; font-size: 0.9em;">選択</span>
+                            <span style="width: 50px; text-align: center; font-weight: bold; font-size: 0.9em;">実施</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top: 15px; display: flex; align-items: center;">
+                    <div class="col-xs-12" style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 1.1em;">右ﾍｯﾄﾞﾗﾝﾌﾟﾚﾝｽﾞ</span>
+            
+                        <div style="display: flex; gap: 40px; margin-right: 40px;">
+                            <!-- 選択チェック -->
+                            <div style="width: 50px; text-align: center;">
+                                <input type="checkbox" class="large-check" id="chk1_select">
+                            </div>
+                            <!-- 実施チェック -->
+                            <div style="width: 50px; text-align: center;">
+                                <input type="checkbox" class="large-check" id="chk1_exec">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr style="margin: 10px 0;">
+
+                <div class="row" style="display: flex; align-items: center;">
+                    <div class="col-xs-12" style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 1.1em;">ﾎﾞﾝﾈｯﾄﾌｰﾄﾞ</span>
+            
+                        <div style="display: flex; gap: 40px; margin-right: 40px;">
+                            <div style="width: 50px; text-align: center;">
+                                <input type="checkbox" class="large-check" id="chk2_select">
+                            </div>
+                            <div style="width: 50px; text-align: center;">
+                                <input type="checkbox" class="large-check" id="chk2_exec">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr style="margin: 10px 0;">
+
+                <div class="row" style="display: flex; align-items: center;">
+                    <div class="col-xs-12" style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 1.1em;">ﾌﾛﾝﾄﾊﾞﾝﾊﾟｰ</span>
+            
+                        <div style="display: flex; gap: 40px; margin-right: 40px;">
+                            <div style="width: 50px; text-align: center;">
+                                <input type="checkbox" class="large-check" id="chk3_select">
+                            </div>
+                            <div style="width: 50px; text-align: center;">
+                                <input type="checkbox" class="large-check" id="chk3_exec">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr style="margin: 10px 0;">
+
+                <div class="row" style="display: flex; align-items: center;">
+                    <div class="col-xs-12" style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 1.1em;">ｺｱｻﾎﾟｰﾄ</span>
+            
+                        <div style="display: flex; gap: 40px; margin-right: 40px;">
+                            <div style="width: 50px; text-align: center;">
+                                <input type="checkbox" class="large-check" id="chk3_select">
+                            </div>
+                            <div style="width: 50px; text-align: center;">
+                                <input type="checkbox" class="large-check" id="chk3_exec">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <h2>&nbsp;</h2>
+
+            <div class="row" style="margin-top: 15px;">
+                <div class="col-xs-12" style="display: flex; flex-direction: column; align-items: flex-end;">
+                    
+                    <!-- 上段：全選択 と クリア -->
+                    <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                        <button type="button" class="btn btn-default" onclick="selectAllChecks()" style="width: 100px;">
+                            全選択
+                        </button>
+                        <button type="button" class="btn btn-danger" onclick="clearAllChecks()" style="width: 100px;">
+                            クリア
+                        </button>
+                    </div>
+
+                    <!-- 下段：開始（クリアボタンの下に配置） -->
+                    <div>
+                        <button type="button" class="btn btn-primary btn-lg" style="width: 100px; font-weight: bold;">
+                            開始
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <h2>割当外　作業工程</h2>
+
+            
+        </div>
+
+        <div class="col-xs-12"> <!-- col-md-4からスマホ対応のcol-xs-12に変更 -->
+            <h2>&nbsp;</h2>
+
+        </div>
+
+    </div>
+
+    <!-- 下部アクションエリア -->
+    <div class="row" style="margin-top: 20px; padding-bottom: 50px;">
+        <div class="col-xs-4">
+            <a href="javascript:history.back();" class="btn btn-default btn-lg">
+                « 戻る
+            </a>
+        </div>
+        <div class="col-xs-4 text-right">
+            <div class="camera-btn-wrapper">
+                <label for="cameraInput" class="camera-btn-label">
+                    <span class="glyphicon glyphicon-camera"></span> 撮影
+                </label>
+                <input type="file" accept="image/*" capture="camera" id="cameraInput" onchange="previewImage(this)">
+            </div>
+        </div>
+        <div class="col-xs-4">
+            <a href="./BPM_Gazosentaku.html" class="btn btn-default btn-lg">
+                <span class="glyphicon glyphicon-picture"></span> 選択
+            </a>
+        </div>
+
+        <div class="col-xs-12">
+            <p style="font-size:0.85em; color:#d9534f; margin-top:10px;">
+                <span class="glyphicon glyphicon-info-sign"></span> 撮影後、写真を長押しで保存できます
+            </p>
+            <div id="previewContainer">
+                <span id="previewPlaceholder" style="color: #999;">撮影した写真がここに表示されます</span>
+                <img id="myPhoto" src="./BPM_Sagyokoutei" style="display:none;">
+            </div>
+        </div>
+    </div>
+
+
+
+
+<!-- パターン1：JavaScript（ファイルの最後の方に書いてください） -->
+<script>
+    (function() {
+        const now = new Date();
+        const yyyy = now.getFullYear();
+        const mm = String(now.getMonth() + 1).padStart(2, '0');
+        const dd = String(now.getDate()).padStart(2, '0');
+        const hh = String(now.getHours()).padStart(2, '0');
+        const min = String(now.getMinutes()).padStart(2, '0');
+
+        const formatTime = yyyy + '年' + mm + '月' + dd + '日 ' + hh + ':' + min;
+        
+        // IDを指定して文字を書き換える
+        document.getElementById('current-datetime').innerText = formatTime;
+    })();
+
+    function previewImage(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                var img = document.getElementById('myPhoto');
+                img.src = e.target.result;
+                img.style.display = 'block'; // 写真を表示
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    // 「全選択」ボタン：左側の「選択」チェックボックスをすべてONにする
+    function selectAllChecks() {
+        // idが "select" で終わるチェックボックスをすべて取得
+        const selectChecks = document.querySelectorAll('input[id$="_select"]');
+        selectChecks.forEach(chk => {
+            chk.checked = true;
+        });
+    }
+
+    // 「クリア」ボタン：すべてのチェックボックス（選択・実施両方）をOFFにする
+    function clearAllChecks() {
+        const allChecks = document.querySelectorAll('.large-check');
+        allChecks.forEach(chk => {
+            chk.checked = false;
+        });
+    }
+
+</script>
+
+
+
+
+            <hr>
+            <footer>
+                <p>© 2026 - BP Management System for mobile</p>
+            </footer>
+        </div>
+    </form>
+
+
+</body></html>
