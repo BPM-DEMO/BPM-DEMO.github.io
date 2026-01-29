@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <!-- saved from url=(0033)http://localhost:59652/Syokigamen -->
 <html lang="en" class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage no-websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths" style=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>
-	Home Page - マイ ASP.NET アプリケーション
+	BPM for mobile
 </title><script src="./BPM_Syokigamen_files/modernizr-2.8.3.js"></script>
 <link href="./BPM_Syokigamen_files/bootstrap.css" rel="stylesheet">
 <link href="./BPM_Syokigamen_files/Site.css" rel="stylesheet">
-<link href="http://localhost:59652/favicon.ico" rel="shortcut icon" type="image/x-icon"></head>
+<link href="./favicon.ico" rel="shortcut icon" type="image/x-icon"></head>
 <body>
-    <form method="post" action="http://localhost:59652/Syokigamen" id="ctl01">
+    <form method="post" action="./BPM_Syokigamen" id="ctl01">
 <div class="aspNetHidden">
 <input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="">
 <input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="">
-<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="ZIW642E5eECts77SGWJZcUPMip8SIX0CLMS1FXNLOoJ/7iSRkWzOYgTIEU5VkJdfbWTyROhb6jhWNLP6X8R9K7QEExChk4EJRL9rIYHyK023NfyBZ7wStST080/suilugNPXqotq8tCXx03t25Sw4lBqt+dXm1JlnWAznnGB5UxqrUPn0e83idr3+s5HYSFWJ4Ba+cW+KaK+aWlKRvThdw==">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="lCb4JBySfwp9bd8whZ9Z//v6MtOYj+bPijRqP9gJEtRKaZPXwf0Fs3syuWxQP0y+eejLYqYSsTBvN+5yO8F2BBPCSz/oviQ9iCldnEvwGcsjO75ur0+NW92iAstYNuW00304AvJ+id7NKcKhFtzTx8ILNMFt6jH8jJ03k7+rZhcZXS1RMvxNrpGghhHLVUw2CNUgg/HOYj6nusEh732JhQ==">
 </div>
 
 <script type="text/javascript">
@@ -61,18 +61,18 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ctl09', 'ctl01', [], [], [], 
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a href="https://sgn-test.github.io/" class="navbar-brand">BP Management System for mobile</a>
+                    <a href="https://sgn-test.github.io/" class="navbar-brand">BPM for mobile</a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a href="https://sgn-test.github.io/">ホーム</a></li>
                         <!--<li><a href="About">詳細</a></li>-->
-                        <!--<li><a href="Contact">問い合わせ</a></li>-->
+                        <li><a href="https://sgn-test.github.io/">問い合わせ</a></li>
                     </ul>
                     
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a href="https://sgn-test.github.io/">登録</a></li>
-                                <li><a href="https://sgn-test.github.io/">ログイン</a></li>
+                                <!--<li><a href="Account/Register">登録</a></li>-->
+                                <!--<li><a href="Account/Login">ログイン</a></li>-->
                             </ul>
                         
                 </div>
@@ -81,18 +81,44 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ctl09', 'ctl01', [], [], [], 
         <div class="container body-content">
             
 
+
+    <style>
+        .pdf-container {
+            width: 100%;
+            height: 100%;
+            /* iOSで中身をスクロールさせるための魔法 */
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch; 
+        }
+        .pdf-container iframe {
+            width: 100%;
+            height: 100%;
+            /* iOSでは高さを明示的に大きく設定する必要がある場合があります */
+            min-height: 1000px; 
+        }
+
+        /* 行のスタイルを一律にする */
+        .flex-row {
+            display: flex;
+            align-items: center; /* これで中身を上下中央に揃える */
+            min-height: 40px;    /* 標準的なボタンが入る行の高さに固定する */
+        }
+
+        /* ラベルの微調整（テキストと上下位置がズレるのを防ぐ） */
+        .flex-row .label {
+            display: inline-block;
+            padding: 5px 8px; /* ラベルの余白を少し整える */
+            vertical-align: middle;
+        }
+
+        /* 最初の行だけ上のマージンを少し削る設定 */
+        .well > .flex-row:first-child {
+            margin-top: -10px; 
+        }
+    </style>
+
     <div class="jumbotron">
         <h2>BPM for mobile</h2>
-        <!--
-        <table id="MainContent_Table1" style="height:55px;width:1101px;">
-	<tr>
-		<td></td>
-	</tr>
-</table>
-        <p class="lead">担当者</p>
-        <p class="lead">板金担当A</p>
-        -->
-        <!--<p><a href="http://www.asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a> </p>-->
         <div class="col-xs-6">
             <p class="lead text-right">担当者：</p>
         </div>
@@ -104,146 +130,122 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ctl09', 'ctl01', [], [], [], 
 
     <div class="row">
         <div class="col-md-6">
+
             <h2>担当割当作業前</h2>
-            <div class="well" style="padding: 10px; margin-top: 20px;">
-                <div class="row">
-                    <div class="col-xs-4">
-                        <span class="label label-info"><strong>受付番号</strong></span>
-                    </div>
-                    <div class="col-xs-8">
-                        <span>20260101001</span>
-
-                        <a href="./BPM_PDF/WorkOrder_2507000129.pdf" target="_blank" class="btn btn-primary btn-sm pull-right" style="margin-left: 20px;">確認
-                        </a>
-
-                        <a href="./BPM_Sagyoshiji.html" class="btn btn-primary btn-sm pull-right" style="margin-left: 20px;">選択
-                        </a>
-
+            <div class="well" style="padding: 10px; margin-top: 20px;">            
+                <!-- すべての行に flex-row を付与 -->
+                <div class="row flex-row">
+                    <div class="col-xs-4"><span class="label label-info"><strong>受付番号</strong></span></div>
+                    <div class="col-xs-5"><span>20260101001</span></div>
+                    <div class="col-xs-3">
+                        <button type="button" class="btn btn-primary pull-right" onclick="location.href=&#39;./BPM_Sagyoshiji.html&#39;;">選択</button>
                     </div>
                 </div>
-                <hr style="margin: 10px 0;">
-                <div class="row">
-                    <div class="col-xs-4">
-                        <span class="label label-info">顧客名</span>
-                    </div>
-                    <div class="col-xs-8">
-                        仙台　史郎
-                    </div>
+    
+                <hr style="margin: 5px 0;"> <!-- マージンを少し狭めて固定 -->
+
+                <div class="row flex-row">
+                    <div class="col-xs-4"><span class="label label-info">顧客名</span></div>
+                    <div class="col-xs-8">仙台　史郎</div>
                 </div>
-                <hr style="margin: 10px 0;">
-                <div class="row">
-                    <div class="col-xs-4">
-                        <span class="label label-info">車名</span>
-                    </div>
-                    <div class="col-xs-8">
-                        プリウス4WD ABCD
-                    </div>
+    
+                <hr style="margin: 5px 0;">
+
+                <div class="row flex-row">
+                    <div class="col-xs-4"><span class="label label-info">車名</span></div>
+                    <div class="col-xs-8">プリウス4WD ABCD</div>
                 </div>
-                <hr style="margin: 10px 0;">
-                <div class="row">
-                    <div class="col-xs-4">
-                        <span class="label label-info">登録番号</span>
-                    </div>
-                    <div class="col-xs-8">
-                        仙台335あ1234
+    
+                <hr style="margin: 5px 0;">
+
+                <div class="row flex-row">
+                    <div class="col-xs-4"><span class="label label-info">登録番号</span></div>
+                    <div class="col-xs-5">仙台335あ1234</div>
+                    <div class="col-xs-3">
+                        <button type="button" class="btn btn-primary pull-right" onclick="BPM.showPdf(&#39;/PDF/WorkOrder_2507000129.pdf&#39;)">確認</button>
                     </div>
                 </div>
             </div>
 
+
+
+
             <h2>&nbsp;</h2>
             <h2>作業中</h2>
-            <div class="well" style="padding: 10px; margin-top: 20px;">
-                <div class="row">
-                    <div class="col-xs-4">
-                        <span class="label label-info"><strong>受付番号</strong></span>
-                    </div>
-                    <div class="col-xs-8">
-                        <span>20260101001</span>
-                        <button type="button" class="btn btn-primary btn-sm pull-right" style="margin-left: 20px;">
-                            選択
-                        </button>
-                        <button type="button" class="btn btn-primary btn-sm pull-right" style="margin-left: 20px;">
-                            確認
-                        </button>
+            <div class="well" style="padding: 10px; margin-top: 20px;">            
+                <!-- すべての行に flex-row を付与 -->
+                <div class="row flex-row">
+                    <div class="col-xs-4"><span class="label label-info"><strong>受付番号</strong></span></div>
+                    <div class="col-xs-5"><span>20260101001</span></div>
+                    <div class="col-xs-3">
+                        <button type="button" class="btn btn-primary pull-right" onclick="location.href=&#39;./BPM_Sagyoshiji.html&#39;;">選択</button>
                     </div>
                 </div>
-                <hr style="margin: 10px 0;">
-                <div class="row">
-                    <div class="col-xs-4">
-                        <span class="label label-info">顧客名</span>
-                    </div>
-                    <div class="col-xs-8">
-                        仙台　史郎
-                    </div>
+    
+                <hr style="margin: 5px 0;"> <!-- マージンを少し狭めて固定 -->
+
+                <div class="row flex-row">
+                    <div class="col-xs-4"><span class="label label-info">顧客名</span></div>
+                    <div class="col-xs-8">仙台　史郎</div>
                 </div>
-                <hr style="margin: 10px 0;">
-                <div class="row">
-                    <div class="col-xs-4">
-                        <span class="label label-info">車名</span>
-                    </div>
-                    <div class="col-xs-8">
-                        プリウス4WD ABCD
-                    </div>
+    
+                <hr style="margin: 5px 0;">
+
+                <div class="row flex-row">
+                    <div class="col-xs-4"><span class="label label-info">車名</span></div>
+                    <div class="col-xs-8">プリウス4WD ABCD</div>
                 </div>
-                <hr style="margin: 10px 0;">
-                <div class="row">
-                    <div class="col-xs-4">
-                        <span class="label label-info">登録番号</span>
-                    </div>
-                    <div class="col-xs-8">
-                        仙台335あ1234
+    
+                <hr style="margin: 5px 0;">
+
+                <div class="row flex-row">
+                    <div class="col-xs-4"><span class="label label-info">登録番号</span></div>
+                    <div class="col-xs-5">仙台335あ1234</div>
+                    <div class="col-xs-3">
+                        <button type="button" class="btn btn-primary pull-right" onclick="BPM.showPdf(&#39;/PDF/WorkOrder_2507000129.pdf&#39;)">確認</button>
                     </div>
                 </div>
             </div>
 
             <h2>&nbsp;</h2>
             <h2>中断中・休憩中</h2>
-            <div class="well" style="padding: 10px; margin-top: 20px;">
-                <div class="row">
-                    <div class="col-xs-4">
-                        <span class="label label-info"><strong>受付番号</strong></span>
-                    </div>
-                    <div class="col-xs-8">
-                        <span>20260101001</span>
-                        <button type="button" class="btn btn-primary btn-sm pull-right" style="margin-left: 20px;">
-                            選択
-                        </button>
-                        <button type="button" class="btn btn-primary btn-sm pull-right" style="margin-left: 20px;">
-                            確認
-                        </button>
+            <div class="well" style="padding: 10px; margin-top: 20px;">            
+                <!-- すべての行に flex-row を付与 -->
+                <div class="row flex-row">
+                    <div class="col-xs-4"><span class="label label-info"><strong>受付番号</strong></span></div>
+                    <div class="col-xs-5"><span>20260101001</span></div>
+                    <div class="col-xs-3">
+                        <button type="button" class="btn btn-primary pull-right" onclick="location.href=&#39;./BPM_Sagyoshiji.html&#39;;">選択</button>
                     </div>
                 </div>
-                <hr style="margin: 10px 0;">
-                <div class="row">
-                    <div class="col-xs-4">
-                        <span class="label label-info">顧客名</span>
-                    </div>
-                    <div class="col-xs-8">
-                        仙台　史郎
-                    </div>
+    
+                <hr style="margin: 5px 0;"> <!-- マージンを少し狭めて固定 -->
+
+                <div class="row flex-row">
+                    <div class="col-xs-4"><span class="label label-info">顧客名</span></div>
+                    <div class="col-xs-8">仙台　史郎</div>
                 </div>
-                <hr style="margin: 10px 0;">
-                <div class="row">
-                    <div class="col-xs-4">
-                        <span class="label label-info">車名</span>
-                    </div>
-                    <div class="col-xs-8">
-                        プリウス4WD ABCD
-                    </div>
+    
+                <hr style="margin: 5px 0;">
+
+                <div class="row flex-row">
+                    <div class="col-xs-4"><span class="label label-info">車名</span></div>
+                    <div class="col-xs-8">プリウス4WD ABCD</div>
                 </div>
-                <hr style="margin: 10px 0;">
-                <div class="row">
-                    <div class="col-xs-4">
-                        <span class="label label-info">登録番号</span>
-                    </div>
-                    <div class="col-xs-8">
-                        仙台335あ1234
+    
+                <hr style="margin: 5px 0;">
+
+                <div class="row flex-row">
+                    <div class="col-xs-4"><span class="label label-info">登録番号</span></div>
+                    <div class="col-xs-5">仙台335あ1234</div>
+                    <div class="col-xs-3">
+                        <button type="button" class="btn btn-primary pull-right" onclick="BPM.showPdf(&#39;/PDF/WorkOrder_2507000129.pdf&#39;)">確認</button>
                     </div>
                 </div>
             </div>
-
-
+            
         </div>
+
 <!--        
 
         <div class="col-md-6">
@@ -277,13 +279,57 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ctl09', 'ctl01', [], [], [], 
 
     </div>
 
+
+<div id="fullScreenPdf" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:white; z-index:9999;">
+    <div style="height:50px; background:#333; color:white; display:flex; align-items:center; padding:0 15px; justify-content: space-between;">
+        <span style="font-weight:bold;">作業指示書</span>
+        <button type="button" class="btn btn-danger" onclick="BPM.closePdf()">閉じる</button>
+    </div>
+
+    <div style="height:calc(100vh - 50px); width:100%;">
+        <iframe id="pdfFullFrame" src="./BPM_Syokigamen_files/saved_resource.html" width="100%" height="100%" frameborder="0"></iframe>
+    </div>
 </div>
+
+
+
+
+<script>
+    // BPMオブジェクトの中に追加
+    const BPM = {
+        // ...これまでの関数...
+
+        showPdf: (pdfUrl) => {
+            const viewer = document.getElementById('fullScreenPdf');
+            const frame = document.getElementById('pdfFullFrame');
+
+            // 1. viewer.html へのパス
+            const viewerPath = '/Scripts/pdfjs/web/viewer.html?';
+        
+            // 2. 表示したいPDFのパスを引数 (?file=...) にくっつける
+            // PDFのパスも絶対パスに変換して渡す
+            const absolutePdfUrl = new URL(pdfUrl, window.location.origin).pathname;
+            const fullViewerUrl = viewerPath + '?file=' + encodeURIComponent(absolutePdfUrl);
+
+            // 3. 表示
+            viewer.style.display = 'block';
+            frame.src = fullViewerUrl;
+            document.body.style.overflow = 'hidden';
+        },
+
+        closePdf: () => {
+            document.getElementById('fullScreenPdf').style.display = 'none';
+            document.getElementById('pdfFullFrame').src = "";
+            document.body.style.overflow = 'auto';
+        }
+    };
+</script>
 
             <hr>
             <footer>
-                <p>© 2026 - BP Management System for mobile</p>
+                <p>© 2026 - BPM for mobile</p>
             </footer>
-        
+        </div>
     </form>
 
 
