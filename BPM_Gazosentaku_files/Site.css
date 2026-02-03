@@ -27,3 +27,29 @@ textarea {
         padding: 0;
     }
 }
+
+/* 全ての要素をゴシック体（サンセリフ）に強制 */
+/*html, body, span, div, p, label, button, input, select {  */
+html, body, span:not(.glyphicon), div:not(.glyphicon), p, label, button:not(.glyphicon) {
+    font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif !important;
+    /* iPhoneが勝手に文字サイズを調整するのを禁止（これで大きさが安定します） */
+    -webkit-text-size-adjust: 100%;
+}
+
+/* 2. アイコン専用のフォント設定を「最強の優先度」で復活させる */
+.glyphicon {
+    font-family: 'Glyphicons Halflings' !important;
+    font-style: normal !important;
+    font-weight: normal !important;
+    line-height: 1 !important;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+}
+
+/* BootstrapのコンテナがPC用の幅で固定されないようにする */
+.container {
+    width: auto !important;
+    max-width: 100% !important;
+    padding-left: 15px;
+    padding-right: 15px;
+}
